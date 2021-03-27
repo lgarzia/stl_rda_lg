@@ -19,7 +19,7 @@ docs/_build/
 .mypy_cache/
 
 # vscode
-.vscode
+.vscode/
 
 
 
