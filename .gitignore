@@ -3,8 +3,14 @@
 *.py[cod]
 *$py.class
 
-# C extensions
-*.so
+# shortcut to poetry virtual envs.
+.virtualenvs*
+
+# LJG - Interactive Scratchpad/Jupyter Notebooks
+**/scratchpad*.py
+
+# phantomjs
+/phantomjs*
 
 # Distribution / packaging
 dist/

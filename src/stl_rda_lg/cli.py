@@ -23,3 +23,10 @@ def run():
     sys.argv = ["streamlit", "run", fpath]
     typer.echo(fpath)
     sys.exit(stcli.main())
+
+
+@app.command
+def download():
+    # idea is to download data
+
+    pass

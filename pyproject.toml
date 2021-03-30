@@ -10,6 +10,7 @@ mypy = "^0.812"
 python = "^3.9"
 streamlit = "^0.79.0"
 typer = {extras = ["all"], version = "^0.3.2"}
+selenium = "^3.141.0"
 
 [tool.poetry.scripts]
 stl-rda-lg = "stl_rda_lg.cli:app"

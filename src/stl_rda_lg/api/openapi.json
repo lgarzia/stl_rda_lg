@@ -1,0 +1,740 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "St. Louis Crime",
+        "description": "Automatically Updated, Clean Crime Data from the Saint Louis Metropolitan Police Department, provided by the St. Louis Regional Data Alliance in partnership with the Insititute for Public Health at Washington University.<br><br>If you'd prefer to interact with queries in browser, see the <a href='/crime/docs'>Swagger UI</a>",
+        "version": "0.1.0",
+        "x-logo": {
+            "url": "https://stldata.org/wp-content/uploads/2019/06/rda-favicon.png"
+        }
+    },
+    "paths": {
+        "/crime/legacy/latest": {
+            "get": {
+                "summary": "Legacy Latest",
+                "operationId": "legacy_latest_crime_legacy_latest_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LegacyCrimeLatest"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crime/legacy/nbhood": {
+            "get": {
+                "summary": "Legacy Nbhood",
+                "operationId": "legacy_nbhood_crime_legacy_nbhood_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Year",
+                            "type": "integer"
+                        },
+                        "name": "year",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Month",
+                            "type": "string"
+                        },
+                        "name": "month",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Gun",
+                            "type": "string",
+                            "default": false
+                        },
+                        "name": "gun",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Legacy Nbhood Crime Legacy Nbhood Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LegacyCrimeNeighborhood"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crime/legacy/district": {
+            "get": {
+                "summary": "Legacy District",
+                "operationId": "legacy_district_crime_legacy_district_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Year",
+                            "type": "integer"
+                        },
+                        "name": "year",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Month",
+                            "type": "string"
+                        },
+                        "name": "month",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Gun",
+                            "type": "string",
+                            "default": false
+                        },
+                        "name": "gun",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Legacy District Crime Legacy District Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LegacyCrimeDistrict"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crime/legacy/range": {
+            "get": {
+                "summary": "Legacy Range",
+                "operationId": "legacy_range_crime_legacy_range_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Start",
+                            "type": "string"
+                        },
+                        "name": "start",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "End",
+                            "type": "string"
+                        },
+                        "name": "end",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Ucr",
+                            "type": "string"
+                        },
+                        "name": "ucr",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Gun",
+                            "type": "string",
+                            "default": false
+                        },
+                        "name": "gun",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Legacy Range Crime Legacy Range Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LegacyCrimeRange"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crime/legacy/trends": {
+            "get": {
+                "summary": "Legacy Trends",
+                "operationId": "legacy_trends_crime_legacy_trends_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Start",
+                            "type": "string"
+                        },
+                        "name": "start",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "End",
+                            "type": "string"
+                        },
+                        "name": "end",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Ucr",
+                            "type": "string"
+                        },
+                        "name": "ucr",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Gun",
+                            "type": "string",
+                            "default": false
+                        },
+                        "name": "gun",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crime/": {
+            "get": {
+                "summary": "Get Api Docs",
+                "operationId": "get_api_docs_crime__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crime/latest": {
+            "get": {
+                "summary": "Latest Data",
+                "operationId": "latest_data_crime_latest_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CrimeLatest"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crime/coords": {
+            "get": {
+                "summary": "Crime Points",
+                "operationId": "crime_points_crime_coords_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Start",
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "name": "start",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "End",
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "name": "end",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Category",
+                            "type": "string"
+                        },
+                        "name": "category",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Crime Points Crime Coords Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CrimePoints"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crime/detailed": {
+            "get": {
+                "summary": "Crime Detailed",
+                "operationId": "crime_detailed_crime_detailed_get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Start",
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "name": "start",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "End",
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "name": "end",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Category",
+                            "type": "string"
+                        },
+                        "name": "category",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Crime Detailed Crime Detailed Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CrimeDetailed"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crime/{geometry}": {
+            "get": {
+                "summary": "Crime Aggregate",
+                "operationId": "crime_aggregate_crime__geometry__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Geometry",
+                            "type": "string"
+                        },
+                        "name": "geometry",
+                        "in": "path"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Start",
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "name": "start",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "End",
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "name": "end",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Category",
+                            "type": "string"
+                        },
+                        "name": "category",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Crime Aggregate Crime  Geometry  Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CrimeAggregate"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CrimeAggregate": {
+                "title": "CrimeAggregate",
+                "required": [
+                    "region",
+                    "count"
+                ],
+                "type": "object",
+                "properties": {
+                    "region": {
+                        "title": "Region",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "CrimeDetailed": {
+                "title": "CrimeDetailed",
+                "required": [
+                    "id",
+                    "date",
+                    "time"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "date": {
+                        "title": "Date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "time": {
+                        "title": "Time",
+                        "type": "string",
+                        "format": "time"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "lon": {
+                        "title": "Lon",
+                        "type": "number"
+                    },
+                    "lat": {
+                        "title": "Lat",
+                        "type": "number"
+                    }
+                }
+            },
+            "CrimeLatest": {
+                "title": "CrimeLatest",
+                "required": [
+                    "latest"
+                ],
+                "type": "object",
+                "properties": {
+                    "latest": {
+                        "title": "Latest",
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "CrimePoints": {
+                "title": "CrimePoints",
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "lon": {
+                        "title": "Lon",
+                        "type": "number"
+                    },
+                    "lat": {
+                        "title": "Lat",
+                        "type": "number"
+                    }
+                }
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "LegacyCrimeDistrict": {
+                "title": "LegacyCrimeDistrict",
+                "required": [
+                    "district",
+                    "ucr_category"
+                ],
+                "type": "object",
+                "properties": {
+                    "district": {
+                        "title": "District",
+                        "type": "string"
+                    },
+                    "ucr_category": {
+                        "title": "Ucr Category",
+                        "type": "string"
+                    },
+                    "Incidents": {
+                        "title": "Incidents",
+                        "type": "integer"
+                    }
+                }
+            },
+            "LegacyCrimeLatest": {
+                "title": "LegacyCrimeLatest",
+                "required": [
+                    "crime_last_update"
+                ],
+                "type": "object",
+                "properties": {
+                    "crime_last_update": {
+                        "title": "Crime Last Update",
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "LegacyCrimeNeighborhood": {
+                "title": "LegacyCrimeNeighborhood",
+                "required": [
+                    "neighborhood",
+                    "ucr_category"
+                ],
+                "type": "object",
+                "properties": {
+                    "neighborhood": {
+                        "title": "Neighborhood",
+                        "type": "string"
+                    },
+                    "ucr_category": {
+                        "title": "Ucr Category",
+                        "type": "string"
+                    },
+                    "Incidents": {
+                        "title": "Incidents",
+                        "type": "integer"
+                    }
+                }
+            },
+            "LegacyCrimeRange": {
+                "title": "LegacyCrimeRange",
+                "required": [
+                    "db_id",
+                    "ucr_category"
+                ],
+                "type": "object",
+                "properties": {
+                    "db_id": {
+                        "title": "Db Id",
+                        "type": "integer"
+                    },
+                    "ucr_category": {
+                        "title": "Ucr Category",
+                        "type": "string"
+                    },
+                    "wgs_x": {
+                        "title": "Wgs X",
+                        "type": "number"
+                    },
+                    "wgs_y": {
+                        "title": "Wgs Y",
+                        "type": "number"
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
