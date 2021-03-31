@@ -31,19 +31,46 @@ def d_input():
 
 @pytest.fixture()
 def remove_directory(d_input):
-    res_ = ws.build_data_directory(d_input)
+    res_ = ws.build_data_directory_path(d_input)
     if res_.exists():
         res_.rmdir()
     yield
-    res_.rmdir()
+    n_dir = len([v for k, v in d_input.items() if "dir" in k])
+    res_.rmdir()  # delete data dir
+    for i in range(n_dir - 1):
+        print(i)
+        p = res_.parents[i]
+        p.rmdir()
 
 
-def test_build_data_dir(d_input):
+def test_build_data_dir_path(d_input):
     input = d_input
     # remove_directory
-    res_ = ws.build_data_directory(input)
+    res_ = ws.build_data_directory_path(input)
     assert res_ == Path(
         os.path.join(
             os.getcwd(), "rda_datasets", "WhereWeStand-8thEditionData", "demographics"
         )
     )
+
+
+@pytest.mark.skip(reason="validating directory will work")
+def test_make_data_dir(remove_directory, d_input):
+    input = d_input
+    # remove_directory
+    res_ = ws.build_data_directory_path(input)
+    ws.make_data_directory_path(res_)
+    assert res_.exists()
+
+
+def test_download_file_exists(tmpdir):
+    import os
+
+    d_conf = {
+        "fname": "wws08_data_Demographics_2020-10-02.csv",
+        "url": r"https://rdx.stldata.org/dataset/where-we-stand-8th-edition-data/resource/fcb9c4b2-6754-4f4f-998e-281befe7b523",
+        "xpath": r"//a[contains(@title, 'Demographics')][contains(@href, 'ewgateway')]",
+    }
+    fname = os.path.join(tmpdir, d_conf["fname"])
+    fname_p = ws.extract_click_download_file(Path(tmpdir), d_conf)
+    assert fname_p.exists()

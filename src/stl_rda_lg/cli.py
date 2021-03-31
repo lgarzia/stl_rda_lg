@@ -1,4 +1,5 @@
 import typer
+import stl_rda_lg.web_scraper as ws
 
 app = typer.Typer()
 
@@ -25,8 +26,8 @@ def run():
     sys.exit(stcli.main())
 
 
-@app.command
+@app.command()
 def download():
     # idea is to download data
-
+    ws.run_download_process()
     pass
